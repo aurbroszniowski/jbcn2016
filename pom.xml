@@ -25,7 +25,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.2.1</version>
         <configuration>
-          <mainClass>org.jsoftbiz.ExampleService</mainClass>
+          <mainClass>org.jsoftbiz.web.ExampleApp</mainClass>
           <arguments>
           </arguments>
         </configuration>
@@ -43,6 +43,23 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.21</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.cache</groupId>
+      <artifactId>cache-api</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.ehcache</groupId>
+      <artifactId>ehcache</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jsr107.ri</groupId>
+      <artifactId>cache-annotations-ri-guice</artifactId>
+      <version>1.0.0</version>
     </dependency>
 
   </dependencies>
