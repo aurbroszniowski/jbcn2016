@@ -5,6 +5,7 @@ import org.jsoftbiz.service.Ex1Service;
 import org.jsoftbiz.service.Ex2Service;
 import org.jsoftbiz.service.Ex3Service;
 import org.jsoftbiz.service.Ex4Service;
+import org.jsoftbiz.service.Ex5Service;
 import org.jsoftbiz.service.SomeService;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.AdviceMode;
@@ -29,7 +30,7 @@ public class ExampleApp {
 
   public static void main(String[] args) {
     AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ExampleApp.class);
-    new WebConfig(ctx.getBean(Ex4Service.class));
+    new WebConfig(ctx.getBean(Ex5Service.class));
     ctx.registerShutdownHook();
   }
 

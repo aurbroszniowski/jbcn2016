@@ -18,7 +18,6 @@ import javax.cache.spi.CachingProvider;
 @Service
 public class Ex4Service implements SomeService {
 
-  private SomeRepository repository = new SomeRepository();
   private Cache<String, String> cache;
 
   public Ex4Service() {
