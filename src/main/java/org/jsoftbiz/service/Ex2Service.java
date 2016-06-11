@@ -24,7 +24,9 @@ public class Ex2Service implements SomeService {
   private Cache<String, String> cache;
 
   public Ex2Service() {
-    CachingProvider provider = Caching.getCachingProvider();
+//    CachingProvider provider = Caching.getCachingProvider("org.ehcache.jsr107.EhcacheCachingProvider");
+//    CachingProvider provider = Caching.getCachingProvider("com.hazelcast.cache.HazelcastCachingProvider");
+    CachingProvider provider = Caching.getCachingProvider("org.apache.ignite.cache.CachingProvider");
     CacheManager cacheManager = provider.getCacheManager();
 
     MutableConfiguration<String, String> configuration = new MutableConfiguration<>();

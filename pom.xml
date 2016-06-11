@@ -55,10 +55,26 @@
       <artifactId>cache-api</artifactId>
       <version>1.0.0</version>
     </dependency>
+
+    <!--Ehcache-->
     <dependency>
       <groupId>org.ehcache</groupId>
       <artifactId>ehcache</artifactId>
       <version>3.0.2</version>
+    </dependency>
+
+    <!--Hazelcast-->
+    <dependency>
+      <groupId>com.hazelcast</groupId>
+      <artifactId>hazelcast</artifactId>
+      <version>3.6.3</version>
+    </dependency>
+
+    <!--Apache Ignite-->
+    <dependency>
+      <groupId>org.apache.ignite</groupId>
+      <artifactId>ignite-core</artifactId>
+      <version>1.6.0</version>
     </dependency>
 
     <dependency>

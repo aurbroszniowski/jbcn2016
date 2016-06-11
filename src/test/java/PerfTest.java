@@ -38,7 +38,7 @@ public class PerfTest {
   public void perfTest() throws SyntaxException {
     final String opName = "SomeServiceOperation";
 
-    SomeService service = new Ex4Service();
+    SomeService service = new Ex2Service();
 
     StringGenerator generator = new StringGenerator(4);
     SequenceGenerator sequenceGenerator = new RandomSequenceGenerator(SLOW_GAUSSIAN, 0, 1000, 100);
