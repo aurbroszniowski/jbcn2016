@@ -8,6 +8,10 @@
   <artifactId>jbcn-workshop</artifactId>
   <version>1.0-SNAPSHOT</version>
 
+  <properties>
+    <spring.version>4.2.0.RELEASE</spring.version>
+  </properties>
+
   <build>
     <plugins>
       <plugin>
@@ -39,6 +43,7 @@
       <artifactId>spark-core</artifactId>
       <version>2.5</version>
     </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
@@ -53,13 +58,26 @@
     <dependency>
       <groupId>org.ehcache</groupId>
       <artifactId>ehcache</artifactId>
-      <version>3.0.0</version>
+      <version>3.0.2</version>
     </dependency>
 
     <dependency>
       <groupId>org.jsr107.ri</groupId>
       <artifactId>cache-annotations-ri-guice</artifactId>
       <version>1.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- Spring Context -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
     </dependency>
 
   </dependencies>

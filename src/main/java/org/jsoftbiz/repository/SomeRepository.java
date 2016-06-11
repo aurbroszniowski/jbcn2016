@@ -11,10 +11,12 @@ public class SomeRepository {
 
   /**
    * Simulates a DB write call - takes between 100ms and 1100ms
+   *
    * @param value to be written
    * @return String written
    */
-  public String writeToDb(String value) {
+  public String readFromDb(String value) {
+    System.out.println(" Call to DB");
     try {
       Thread.sleep(100 + rnd.nextInt(1000));
     } catch (InterruptedException e) {
@@ -23,20 +25,4 @@ public class SomeRepository {
 
     return "Hello " + value;
   }
-
-  /**
-   * Simulates a DB read call - takes between 100ms and 1100ms
-   * @param id to be read
-   * @return String
-   */
-  public String readFromDb(String id) {
-    try {
-      Thread.sleep(100 + rnd.nextInt(1000));
-    } catch (InterruptedException e) {
-      // NOOP
-    }
-
-    return "Hello " + id;
-  }
-
 }

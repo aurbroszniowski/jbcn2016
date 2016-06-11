@@ -6,37 +6,37 @@ import org.springframework.stereotype.Service;
 import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
+import javax.cache.configuration.FactoryBuilder;
 import javax.cache.configuration.MutableConfiguration;
+import javax.cache.integration.CacheLoader;
 import javax.cache.spi.CachingProvider;
 
 /**
- * Example service : Cache aside
+ * Example service : Cache through
  */
 
 @Service
-public class Ex2Service implements SomeService {
+public class Ex4Service implements SomeService {
 
   private SomeRepository repository = new SomeRepository();
   private Cache<String, String> cache;
 
-  public Ex2Service() {
+  public Ex4Service() {
     CachingProvider provider = Caching.getCachingProvider();
     CacheManager cacheManager = provider.getCacheManager();
 
     MutableConfiguration<String, String> configuration = new MutableConfiguration<>();
     configuration.setTypes(String.class, String.class);
-    cache = cacheManager.createCache("someCache2", configuration);
+    configuration.setCacheLoaderFactory(new FactoryBuilder.ClassFactory<>("org.jsoftbiz.service.SomeCacheLoader"));
+    configuration.setReadThrough(true);
+    cache = cacheManager.createCache("someCache4", configuration);
   }
 
   @Override
   public String someLogic(final String id) {
-    System.out.println("---> Call to service 2");
+    System.out.println("---> Call to service 4");
 
     String val = cache.get(id);
-    if (val == null) {
-      val = repository.readFromDb(id);
-      cache.put(id, val);
-    }
     return val;
   }
 }

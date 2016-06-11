@@ -1,18 +1,22 @@
 package org.jsoftbiz.service;
 
 import org.jsoftbiz.repository.SomeRepository;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Service;
 
 import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
-import javax.cache.annotation.CacheKey;
-import javax.cache.annotation.CacheResult;
 import javax.cache.configuration.MutableConfiguration;
 import javax.cache.spi.CachingProvider;
 
 /**
- * Example service : Cache aside
+ * Example service : Cache annotation
  */
+@Service
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Ex3Service implements SomeService {
 
   private SomeRepository repository = new SomeRepository();
@@ -24,13 +28,16 @@ public class Ex3Service implements SomeService {
 
     MutableConfiguration<String, String> configuration = new MutableConfiguration<>();
     configuration.setTypes(String.class, String.class);
-    cache = cacheManager.createCache("someCache", configuration);
+    configuration.setStoreByValue(true);
+    cache = cacheManager.createCache("someCache3", configuration);
   }
 
   @Override
-  @CacheResult(cacheName = "someCache")
-  public String someLogic(@CacheKey String id) {
-    String val = repository.writeToDb(id);
+  @Cacheable(value = "someCache3")
+  public String someLogic(String id) {
+    System.out.println("---> Call to service 3");
+
+    String val = repository.readFromDb(id);
     return val;
   }
 }
