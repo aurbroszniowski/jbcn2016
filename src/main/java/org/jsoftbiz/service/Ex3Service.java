@@ -1,6 +1,8 @@
 package org.jsoftbiz.service;
 
 import org.jsoftbiz.repository.SomeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -19,6 +21,8 @@ import javax.cache.spi.CachingProvider;
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Ex3Service implements SomeService {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger("org.jsoftbiz.Demo");
+
   private SomeRepository repository = new SomeRepository();
   private Cache<String, String> cache;
 
@@ -35,7 +39,7 @@ public class Ex3Service implements SomeService {
   @Override
   @Cacheable(value = "someCache3")
   public String someLogic(String id) {
-    System.out.println("---> Call to service 3");
+    LOGGER.debug("---> Call to service 3");
 
     String val = repository.readFromDb(id);
     return val;

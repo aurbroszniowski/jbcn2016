@@ -1,9 +1,10 @@
 package org.jsoftbiz.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.lang.management.ManagementFactory;
-import java.util.Set;
 
 import javax.cache.Cache;
 import javax.cache.CacheManager;
@@ -11,13 +12,10 @@ import javax.cache.Caching;
 import javax.cache.configuration.FactoryBuilder;
 import javax.cache.configuration.MutableConfiguration;
 import javax.cache.spi.CachingProvider;
-import javax.management.InstanceNotFoundException;
-import javax.management.IntrospectionException;
 import javax.management.MBeanAttributeInfo;
 import javax.management.MBeanInfo;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
-import javax.management.ReflectionException;
 
 /**
  * Example service : Cache through
@@ -25,6 +23,8 @@ import javax.management.ReflectionException;
 
 @Service
 public class Ex5Service implements SomeService {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger("org.jsoftbiz.Demo");
 
   private Cache<String, String> cache;
   private ObjectName objectName;
@@ -47,23 +47,23 @@ public class Ex5Service implements SomeService {
       MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
       objectName = new ObjectName("javax.cache:type=CacheStatistics,CacheManager=urn.X-ehcache.jsr107-default-config,Cache=someCache5");
       Object value = mBeanServer.getAttribute(objectName, "CacheHits");
-      System.out.println("cache hits = " + value);
+      LOGGER.debug("cache hits = " + value);
 
       MBeanInfo info;
       info = mBeanServer.getMBeanInfo(objectName);
       MBeanAttributeInfo[] attrInfo = info.getAttributes();
 
-      System.out.println("Attributes for object: " + objectName + ":");
+      LOGGER.debug("Attributes for object: " + objectName + ":");
       for (MBeanAttributeInfo attr : attrInfo) {
         System.out.print("  " + attr.getName() + ", ");
       }
-      System.out.println("");
+      LOGGER.debug("");
     } catch (Exception e) {
       e.printStackTrace();
     }
 
 
-    System.out.println("---> Call to service 5");
+    LOGGER.debug("---> Call to service 5");
 
     String val = cache.get(id);
     return val;

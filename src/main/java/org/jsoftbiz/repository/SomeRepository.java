@@ -1,11 +1,16 @@
 package org.jsoftbiz.repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Random;
 
 /**
  * Some Repository
  */
 public class SomeRepository {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger("org.jsoftbiz.Demo");
 
   Random rnd = new Random();
 
@@ -16,7 +21,7 @@ public class SomeRepository {
    * @return String written
    */
   public String readFromDb(String value) {
-    System.out.println(" Call to DB");
+    LOGGER.debug(" Call to DB");
     try {
       Thread.sleep(100 + rnd.nextInt(1000));
     } catch (InterruptedException e) {
