@@ -14,6 +14,7 @@ Then access into the browser
 [http://localhost:4567/read/something](http://localhost:4567/read/something)
 
 
+
 You can start the application from your IDE, by executing the class ```org.jsoftbiz.web.ExampleApp```
 It is easier to do this way when writing the exercises. It will help you for debugging too.
 
