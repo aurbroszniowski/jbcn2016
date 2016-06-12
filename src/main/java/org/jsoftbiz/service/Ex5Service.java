@@ -1,5 +1,6 @@
 package org.jsoftbiz.service;
 
+import org.jsoftbiz.repository.SomeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,10 @@ import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
 /**
- * Example service : Cache through
+ * Example service : Reading statistics
+ *
+ * Please implement TODO lines
+ *
  */
 
 @Service
@@ -26,46 +30,25 @@ public class Ex5Service implements SomeService {
 
   private static final Logger LOGGER = LoggerFactory.getLogger("org.jsoftbiz.Demo");
 
+  private SomeRepository repository = new SomeRepository();
+
   private Cache<String, String> cache;
   private ObjectName objectName;
 
   public Ex5Service() {
-    CachingProvider provider = Caching.getCachingProvider("org.ehcache.jsr107.EhcacheCachingProvider");
-    CacheManager cacheManager = provider.getCacheManager();
-
-    MutableConfiguration<String, String> configuration = new MutableConfiguration<>();
-    configuration.setTypes(String.class, String.class);
-    configuration.setCacheLoaderFactory(new FactoryBuilder.ClassFactory<>("org.jsoftbiz.service.SomeCacheLoader"));
-    configuration.setReadThrough(true);
-    configuration.setStatisticsEnabled(true);
-    cache = cacheManager.createCache("someCache5", configuration);
+    // TODO : Create a cache like in previous exercises. You can choose if you want to use the cache aside or the cache through pattern
   }
 
   @Override
   public String someLogic(final String id) {
-    try {
-      MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
-      objectName = new ObjectName("javax.cache:type=CacheStatistics,CacheManager=urn.X-ehcache.jsr107-default-config,Cache=someCache5");
-      Object value = mBeanServer.getAttribute(objectName, "CacheHits");
-      LOGGER.debug("cache hits = " + value);
+      // TODO Get the statistics MBean. The Objectname is "javax.cache:type=CacheStatistics,CacheManager=urn.X-ehcache.jsr107-default-config,Cache=YOURCACHENAME"
 
-      MBeanInfo info;
-      info = mBeanServer.getMBeanInfo(objectName);
-      MBeanAttributeInfo[] attrInfo = info.getAttributes();
-
-      LOGGER.debug("Attributes for object: " + objectName + ":");
-      for (MBeanAttributeInfo attr : attrInfo) {
-        System.out.print("  " + attr.getName() + ", ");
-      }
-      LOGGER.debug("");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
+      // TODO : Get the value for the attribute named "CacheHits". This represents the number of cache hits. You can display it.
 
     LOGGER.debug("---> Call to service 5");
 
-    String val = cache.get(id);
+    // TODO : Get the value from the cache if available. When it gets there, the CacheHits value will increase
+    String val = repository.readFromDb(id);
     return val;
   }
 }

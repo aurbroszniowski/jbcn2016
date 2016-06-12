@@ -3,17 +3,15 @@ package org.jsoftbiz.service;
 import org.springframework.stereotype.Service;
 
 /**
- * 9 exercises
+ * Exercises:
  *
- * 2. cache aside
- * 3. cache annotation
- * 4. cache through (loader writer)
- * 5. statistics
- * 9. performance testing
- * 9. comparison jsr107 providers
- * 6. ehcache capacity
- * 7. ehcache topology
- * 8. ehcache consistency shared cache between threads
+ * - cache aside : Ex2Service
+ * - cache through (loader only) : Ex4Service
+ * - statistics : Ex5Service
+ * - performance testing : Ex8Service
+ * - comparison jsr107 providers : Ex8Service
+ * - ehcache capacity : Ex6Service
+ * - ehcache topology : Ex7Service
  *
  */
 

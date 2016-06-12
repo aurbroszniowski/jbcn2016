@@ -13,6 +13,9 @@ import javax.cache.spi.CachingProvider;
 
 /**
  * Example service : Cache aside
+ *
+ * Please implement TODO lines
+ *
  */
 
 @Service
@@ -24,25 +27,21 @@ public class Ex2Service implements SomeService {
   private Cache<String, String> cache;
 
   public Ex2Service() {
-    CachingProvider provider = Caching.getCachingProvider("org.ehcache.jsr107.EhcacheCachingProvider");
-//    CachingProvider provider = Caching.getCachingProvider("com.hazelcast.cache.HazelcastCachingProvider");
-//    CachingProvider provider = Caching.getCachingProvider("org.apache.ignite.cache.CachingProvider");
-    CacheManager cacheManager = provider.getCacheManager();
+    // TODO : get Ehcache as caching provider ("org.ehcache.jsr107.EhcacheCachingProvider")
 
-    MutableConfiguration<String, String> configuration = new MutableConfiguration<>();
-    configuration.setTypes(String.class, String.class);
-    cache = cacheManager.createCache("someCache2", configuration);
+    CacheManager cacheManager; // TODO : Get javax.cache.CacheManager from caching provider
+
+    MutableConfiguration<String, String> configuration; // TODO : create Mutableconfiguration and set types : String, String
+
+    // TODO Create Cache
   }
 
   @Override
   public String someLogic(final String id) {
     LOGGER.debug("---> Call to service 2");
 
-    String val = cache.get(id);
-    if (val == null) {
-      val = repository.readFromDb(id);
-      cache.put(id, val);
-    }
+    // TODO implements Cache Aside pattern to cache the call to the repository
+    String val = repository.readFromDb(id);
     return val;
   }
 }

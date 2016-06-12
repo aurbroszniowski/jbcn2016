@@ -14,6 +14,7 @@ import io.rainfall.unit.TimeDivision;
 import org.jsoftbiz.service.Ex1Service;
 import org.jsoftbiz.service.Ex2Service;
 import org.jsoftbiz.service.Ex4Service;
+import org.jsoftbiz.service.Ex8Service;
 import org.jsoftbiz.service.SomeService;
 import org.junit.Test;
 
@@ -38,7 +39,7 @@ public class PerfTest {
   public void perfTest() throws SyntaxException {
     final String opName = "SomeServiceOperation";
 
-    SomeService service = new Ex2Service();
+    SomeService service = new Ex8Service();
 
     StringGenerator generator = new StringGenerator(4);
     SequenceGenerator sequenceGenerator = new RandomSequenceGenerator(SLOW_GAUSSIAN, 0, 1000, 100);

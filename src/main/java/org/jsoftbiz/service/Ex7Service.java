@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
+import javax.cache.configuration.MutableConfiguration;
 import javax.cache.spi.CachingProvider;
 
 /**
@@ -30,24 +31,24 @@ public class Ex7Service implements SomeService {
   private Cache<String, String> cache;
 
   public Ex7Service() {
-    CachingProvider provider = Caching.getCachingProvider("org.ehcache.jsr107.EhcacheCachingProvider");
+    // TODO : get Ehcache as caching provider ("org.ehcache.jsr107.EhcacheCachingProvider")
 
-    CacheManager cacheManager = provider.getCacheManager();
+    CacheManager cacheManager; // TODO : Get javax.cache.CacheManager from caching provider
 
-    CacheConfiguration<String, String> cacheConfiguration = CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, String.class,
-        ResourcePoolsBuilder.heap(10000).offheap(10, MemoryUnit.MB)).build();
-    cache = cacheManager.createCache("someCache7", Eh107Configuration.fromEhcacheCacheConfiguration(cacheConfiguration));
+    CacheConfiguration<String, String> ehcacheConfiguration; //TODO Create an Ehcache configuration with a
+    // mix of resources (see heap, offheap and disk on http://www.ehcache.org/documentation/3.0/getting-started.html#storage-tiers)
+
+    MutableConfiguration<String, String> configuration; // TODO : create Mutableconfiguration from the Ehcache configuration using Eh107Configuration.fromEhcacheCacheConfiguration
+
+    // TODO Create Cache
   }
 
   @Override
   public String someLogic(final String id) {
-    LOGGER.debug("---> Call to service 7");
+    LOGGER.debug("---> Call to service 6");
 
-    String val = cache.get(id);
-    if (val == null) {
-      val = repository.readFromDb(id);
-      cache.put(id, val);
-    }
+    // TODO implement the caching pattern you want
+    String val = repository.readFromDb(id);
     return val;
   }
 }

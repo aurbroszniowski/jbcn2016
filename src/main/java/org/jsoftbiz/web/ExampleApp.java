@@ -3,7 +3,6 @@ package org.jsoftbiz.web;
 import org.jsoftbiz.config.WebConfig;
 import org.jsoftbiz.service.Ex1Service;
 import org.jsoftbiz.service.Ex2Service;
-import org.jsoftbiz.service.Ex3Service;
 import org.jsoftbiz.service.Ex4Service;
 import org.jsoftbiz.service.Ex5Service;
 import org.jsoftbiz.service.Ex6Service;
@@ -30,7 +29,7 @@ import static spark.Spark.get;
 @ComponentScan({ "org.jsoftbiz" })
 public class ExampleApp {
 
-  private static Class<? extends SomeService> serviceClass = Ex2Service.class;
+  private static Class<? extends SomeService> serviceClass = Ex1Service.class;
 
   public static void main(String[] args) {
     AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ExampleApp.class);
