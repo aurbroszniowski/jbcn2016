@@ -30,7 +30,7 @@ import static spark.Spark.get;
 @ComponentScan({ "org.jsoftbiz" })
 public class ExampleApp {
 
-  private static Class<? extends SomeService> serviceClass = Ex7Service.class;
+  private static Class<? extends SomeService> serviceClass = Ex2Service.class;
 
   public static void main(String[] args) {
     AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ExampleApp.class);

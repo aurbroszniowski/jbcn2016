@@ -30,7 +30,7 @@ public class Ex5Service implements SomeService {
   private ObjectName objectName;
 
   public Ex5Service() {
-    CachingProvider provider = Caching.getCachingProvider();
+    CachingProvider provider = Caching.getCachingProvider("org.ehcache.jsr107.EhcacheCachingProvider");
     CacheManager cacheManager = provider.getCacheManager();
 
     MutableConfiguration<String, String> configuration = new MutableConfiguration<>();

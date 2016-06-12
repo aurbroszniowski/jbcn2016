@@ -27,7 +27,7 @@ public class Ex3Service implements SomeService {
   private Cache<String, String> cache;
 
   public Ex3Service() {
-    CachingProvider provider = Caching.getCachingProvider();
+    CachingProvider provider = Caching.getCachingProvider("org.ehcache.jsr107.EhcacheCachingProvider");
     CacheManager cacheManager = provider.getCacheManager();
 
     MutableConfiguration<String, String> configuration = new MutableConfiguration<>();

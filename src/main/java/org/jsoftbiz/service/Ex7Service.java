@@ -30,7 +30,7 @@ public class Ex7Service implements SomeService {
   private Cache<String, String> cache;
 
   public Ex7Service() {
-    CachingProvider provider = Caching.getCachingProvider();
+    CachingProvider provider = Caching.getCachingProvider("org.ehcache.jsr107.EhcacheCachingProvider");
 
     CacheManager cacheManager = provider.getCacheManager();
 
@@ -41,7 +41,7 @@ public class Ex7Service implements SomeService {
 
   @Override
   public String someLogic(final String id) {
-    LOGGER.debug("---> Call to service 6");
+    LOGGER.debug("---> Call to service 7");
 
     String val = cache.get(id);
     if (val == null) {

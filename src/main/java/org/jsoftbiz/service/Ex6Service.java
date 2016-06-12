@@ -29,7 +29,7 @@ public class Ex6Service implements SomeService {
   private Cache<String, String> cache;
 
   public Ex6Service() {
-    CachingProvider provider = Caching.getCachingProvider();
+    CachingProvider provider = Caching.getCachingProvider("org.ehcache.jsr107.EhcacheCachingProvider");
 
     CacheManager cacheManager = provider.getCacheManager();
 
