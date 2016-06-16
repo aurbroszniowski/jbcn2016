@@ -2,7 +2,7 @@
 # Workshop JBCNConf 2016
 
 
-You need JAVA 1.8 installed
+You need JAVA 1.8 and git installed
 
 Also you will need a browser, Firefox works out of the bos but if you use Chrome you will need to start it with :
 ```chrome.exe --allow-file-access-from-files```
