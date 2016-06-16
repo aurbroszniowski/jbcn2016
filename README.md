@@ -1,6 +1,12 @@
 # Performance through caching
 # Workshop JBCNConf 2016
 
+
+You need JAVA 1.8 installed
+
+Also you will need a browser, Firefox works out of the bos but if you use Chrome you will need to start it with :
+```chrome.exe --allow-file-access-from-files```
+
 Please make sure to clone this project locally before attending to the workshop, and getting all the dependencies by doing a 
  
 ```mvn clean install```
