@@ -28,12 +28,15 @@ public class Ex2Service implements SomeService {
 
   public Ex2Service() {
     // TODO : get Ehcache as caching provider ("org.ehcache.jsr107.EhcacheCachingProvider")
+    CachingProvider cachingProvider = Caching.getCachingProvider("org.ehcache.jsr107.EhcacheCachingProvider");
 
-    CacheManager cacheManager; // TODO : Get javax.cache.CacheManager from caching provider
+    CacheManager cacheManager = cachingProvider.getCacheManager(); // TODO : Get javax.cache.CacheManager from caching provider
 
-    MutableConfiguration<String, String> configuration; // TODO : create Mutableconfiguration and set types : String, String
-
+    MutableConfiguration<String, String> configuration = new MutableConfiguration<>();
+    configuration.setTypes(String.class, String.class);
     // TODO Create Cache
+    cache = cacheManager.createCache("someCache2", configuration);
+
   }
 
   @Override
@@ -41,7 +44,34 @@ public class Ex2Service implements SomeService {
     LOGGER.debug("---> Call to service 2");
 
     // TODO implements Cache Aside pattern to cache the call to the repository
-    String val = repository.readFromDb(id);
-    return val;
+    // pattern :
+
+    // is value in cache for the id?
+    String value = cache.get(id);
+    if (value != null){
+      // if yes -> return value
+      return value;
+    }
+    // if not -> read it from the repository
+    value = repository.readFromDb(id);
+    // then put it in the cache
+    cache.put(id, value);
+    // then return it
+    return value;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
