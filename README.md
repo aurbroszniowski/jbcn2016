@@ -2,6 +2,10 @@
 # Workshop JBCNConf 2016
 
 
+Slides are available
+See file 'JSR107-JBCNF.pdf'
+
+
 You need JAVA 1.8 installed
 
 Also you will need a browser, Firefox works out of the bos but if you use Chrome you will need to start it with :
